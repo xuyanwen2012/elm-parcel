@@ -8,6 +8,7 @@ import Html.Attributes exposing (class, href, src)
 import Html.Events exposing (onClick)
 import Types exposing (..)
 
+import Json.Decode exposing (Decoder, map4, field, int, string)
 
 main =
     Browser.sandbox { init = init, update = update, view = view }
