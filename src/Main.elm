@@ -1,9 +1,12 @@
 module Main exposing (main)
 
+-- import types from "Types.elm"
+
 import Browser
 import Html exposing (Html, a, div, h2, img, li, nav, text, ul)
 import Html.Attributes exposing (class, href, src)
 import Html.Events exposing (onClick)
+import Types exposing (..)
 
 
 main =
@@ -12,20 +15,6 @@ main =
 
 
 -- MODEL
-
-
-type NavItem
-    = Dashboard
-    | Team
-    | Projects
-    | Calendar
-
-
-type alias Paper =
-    { title : String
-    , authors : String
-    , year : Int
-    }
 
 
 type alias Model =
@@ -64,31 +53,33 @@ update (Select item) model =
 
 view : Model -> Html Msg
 view model =
-    -- nav [ class "bg-gray-800" ]
-    --     [ div [ class "mx-auto max-w-7xl px-2 sm:px-6 lg:px-8" ]
-    --         [ div [ class "relative flex h-16 items-center justify-between" ]
-    --             [ div [ class "flex flex-1 items-center justify-center sm:items-stretch sm:justify-start" ]
-    --                 [ div [ class "flex flex-shrink-0 items-center" ]
-    --                     [-- Logo
-    --                     ]
-    --                 , div [ class "hidden sm:ml-6 sm:block" ]
-    --                     [ div [ class "flex space-x-4" ]
-    --                         [ navItem model Dashboard "Dashboard"
-    --                         , navItem model Team "Team"
-    --                         , navItem model Projects "Projects"
-    --                         , navItem model Calendar "Calendar"
-    --                         ]
-    --                     ]
-    --                 ]
-    --             ]
-    --         ]
-    --     ]
-    div [ class "bg-gray-100 min-h-screen flex items-center justify-center p-4" ]
-        [ div [ class "bg-white shadow overflow-hidden sm:rounded-lg w-full max-w-4xl" ]
-            [ div [ class "px-4 py-5 sm:px-6" ]
-                [ h2 [ class "text-lg leading-6 font-medium text-gray-900" ] [ text "Published Papers" ] ]
-            , ul [ class "divide-y divide-gray-200" ]
-                (List.map viewPaper model.papers)
+    div []
+        [ nav [ class "bg-gray-800" ]
+            [ div [ class "mx-auto max-w-7xl px-2 sm:px-6 lg:px-8" ]
+                [ div [ class "relative flex h-16 items-center justify-between" ]
+                    [ div [ class "flex flex-1 items-center justify-center sm:items-stretch sm:justify-start" ]
+                        [ div [ class "flex flex-shrink-0 items-center" ]
+                            [-- Logo
+                            ]
+                        , div [ class "hidden sm:ml-6 sm:block" ]
+                            [ div [ class "flex space-x-4" ]
+                                [ navItem model Dashboard "Dashboard"
+                                , navItem model Team "Team"
+                                , navItem model Projects "Projects"
+                                , navItem model Calendar "Calendar"
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        , div [ class "bg-gray-100 min-h-screen flex items-center justify-center p-4" ]
+            [ div [ class "bg-white shadow overflow-hidden sm:rounded-lg w-full max-w-4xl" ]
+                [ div [ class "px-4 py-5 sm:px-6" ]
+                    [ h2 [ class "text-lg leading-6 font-medium text-gray-900" ] [ text "Published Papers" ] ]
+                , ul [ class "divide-y divide-gray-200" ]
+                    (List.map viewPaper model.papers)
+                ]
             ]
         ]
 
